@@ -1,4 +1,6 @@
+import log_controller
 
+log_object = log_controller
 
 def top_menu():
 
@@ -21,6 +23,7 @@ def get_user_query():
 
     if query_parameter is None:
         message('Query cannot be empty. Enter your query.')
+        log_object.log_info_message('Searched database with empty query string.')
 
     else:
         return query_parameter
@@ -28,4 +31,5 @@ def get_user_query():
 
 
 def message(msg):
+
     print(msg + '\n')
