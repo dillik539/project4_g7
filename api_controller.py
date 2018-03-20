@@ -15,9 +15,9 @@ class ApiController:
 
         if not valid_date_range:
             if query_type is 'headlines':
-                return self.build_articles_list(newsapi.get_top_headlines(q = query_argument))
+                return self.build_articles_list(newsapi.get_top_headlines(q = query_argument, page_size=100))
             elif query_type is 'all':
-                return self.build_articles_list(newsapi.get_everything(q = query_argument))
+                return self.build_articles_list(newsapi.get_everything(q = query_argument, page_size=100))
 
         if valid_date_range and query_type is 'all':
             return self.build_articles_list(
