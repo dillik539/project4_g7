@@ -1,10 +1,14 @@
+# This is a pip install
 from newsapi import NewsApiClient
+# This is from file articles.py
 from article import Article
 
-
+# This is the api Key
+## TODO: Make the actual key on another page and import it it
 newsapi = NewsApiClient(api_key = 'daaba2aab3d54874a0a154c18715e82c')
 # top_headlines = newsapi.get_top_headlines(q = 'white house')
 # all_articles = newsapi.get_everything(q = 'us economy', from_parameter = '2017-01-01', to = '2017-12-31')
+
 
 class ApiController:
 
@@ -56,5 +60,5 @@ class ApiController:
     def validate_dates(start_date, end_date):
         return False
         pass
-        # todo -- this function should actually be in the user_interface - use a datetime object to validate inputs
-        # todo -- should be in YYYY-MM-DD format
+        # # TODO:  -- this function should actually be in the user_interface - use a datetime object to validate inputs
+        # # TODO:  -- should be in YYYY-MM-DD format
