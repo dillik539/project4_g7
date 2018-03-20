@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ba2c1cec00c1e3a1695cb6ae51ddaab99a580cda9caad11f0b8a3b969fc87578"
+            "sha256": "eb8ab9f6411379c9842376f648a3b407a5658460c98b683caf8322fccaf35ace"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -167,6 +167,13 @@
             ],
             "version": "==1.14.2"
         },
+        "oauthlib": {
+            "hashes": [
+                "sha256:09d438bcac8f004ae348e721e9d8a7792a9e23cd574634e973173344046287f5",
+                "sha256:909665297635fa11fe9914c146d875f2ed41c8c2d78e21a529dd71c0ba756508"
+            ],
+            "version": "==2.0.7"
+        },
         "pandas": {
             "hashes": [
                 "sha256:68ac484e857dcbbd07ea7c6f516cc67f7f143f5313d9bc661470e7f473528882",
@@ -200,6 +207,12 @@
             ],
             "version": "==2.7.0"
         },
+        "python-linkedin": {
+            "hashes": [
+                "sha256:0b026fd2a78b68470ad498f1af61b34129b34f244816e828dfb70482be2d4ba4"
+            ],
+            "version": "==4.1"
+        },
         "pytrends": {
             "hashes": [
                 "sha256:5c8c3488be8b32b392a65d024b9abecdebee5ae66b3db1285f5c79d3701d7b9f"
@@ -226,6 +239,13 @@
                 "sha256:5722cd09762faa01276230270ff16af7acf7c5c45d623868d9ba116f15791ce8"
             ],
             "version": "==2.13.0"
+        },
+        "requests-oauthlib": {
+            "hashes": [
+                "sha256:50a8ae2ce8273e384895972b56193c7409601a66d4975774c60c2aed869639ca",
+                "sha256:883ac416757eada6d3d07054ec7092ac21c7f35cb1d2cf82faf205637081f468"
+            ],
+            "version": "==0.8.0"
         },
         "six": {
             "hashes": [

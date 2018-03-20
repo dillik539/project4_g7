@@ -1,3 +1,4 @@
+python-linkedin
 gooey
 numpy
 geopandas

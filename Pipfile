@@ -18,6 +18,7 @@ pandas = "*"
 geojson = "*"
 pycountry = "*"
 setuptools = "*"
+python-linkedin = "*"
 
 
 [dev-packages]

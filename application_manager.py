@@ -1,5 +1,3 @@
-
-
 from gooey import Gooey
 import json
 import random
@@ -12,10 +10,14 @@ import numpy as np
 import pandas as pd
 import pycountry
 
+
 import log_controller
 import user_interface
 from api_controller import ApiController
 from metadata_manager import MetadataManager
+
+
+
 
 #https://github.com/johan/world.geo.json geojson data
 
@@ -26,7 +28,7 @@ log = log_controller
 
 mgr = MetadataManager('geo_data_for_news_choropleth.txt')
 
-@Gooey(advanced=False)
+@Gooey(advanced=False) #for future implementation
 def main():
 
     mgr.get_geo_data()
@@ -75,9 +77,9 @@ def run_test_map():
                         fill_color='YlGn',
                         fill_opacity=0.7,
                         line_opacity=0.2,
-                        threshold_scale=threshold_scale
+                        threshold_scale=threshold_scale,
+                        legend_name='Number of Articles Originating from Country'
                         )
-
     folium.LayerControl().add_to(test_map)
     test_map.save('test_map.html')
 
@@ -93,9 +95,11 @@ def menu_controller(menu_selection):
     }
 
     call_function = selection_dict.get(menu_selection)
+    log.log_info_message(menu_selection)
 
     if menu_selection is None:
         ui.message('Invalid Selection, Try Again')
+        log.log_warning_message('invalid selection in menu_controller()')
     else:
         return call_function()
 
@@ -116,6 +120,7 @@ def map_source(source_country):
 
     if type(source_country) is None:
         ui.message('No Source Country Matched')
+        log.log_error_message(source_country + ' type of None')
     else:
         mgr.query_data_dict[source_country] += 1
 
@@ -126,15 +131,16 @@ def execute_query(query_type):
     article_data = api.query_api(query_argument, query_type)
 
     for article in article_data:
-        ui.message(article.__str__())
+        # ui.message(article.__str__())
+        log.log_info_message(article.__str__())
         article_source_name = article.source
         try:
             source_country = get_source_country(article_source_name)
             if source_country is not None:
                 map_source(source_country)
         except AttributeError:
-            ui.message('Error from article: ' + article.__str__())
-            ui.message('Article Source Type: ' + str(type(article.source)))
+            log.log_error_message('Error from article: ' + article.__str__())
+            log.log_error_message('Article Source Type: ' + str(type(article.source)))
 
     build_choropleth()
 
@@ -167,6 +173,7 @@ def build_choropleth():
 
     choro_map.save('choropleth_map.html')
     choro_map.render()
+    return
 
 
 def query_all_from_date_range():
@@ -174,7 +181,9 @@ def query_all_from_date_range():
 
 
 def quit_program():
+    log.log_info_message('quit_program() called')
     sys.exit('Farewell digital world...\n')
+
 
 
 

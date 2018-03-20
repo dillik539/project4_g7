@@ -2,10 +2,11 @@ from newsapi import NewsApiClient
 from article import Article
 from source import Source
 import os
+import log_controller
 
 news_api_key = os.environ.get('NEWS_CLIENT_API_KEY')
 newsapi = NewsApiClient(api_key = 'daaba2aab3d54874a0a154c18715e82c')
-
+log = log_controller
 
 class ApiController:
 
@@ -33,6 +34,7 @@ class ApiController:
             new_article_object = self.build_article_object(raw_article_data)
             articles_list.append(new_article_object)
 
+        log.log_info_message(str(articles_list))
         return articles_list
 
 
@@ -48,6 +50,7 @@ class ApiController:
         try:
             image_url = raw_article_data['urlToImage']
         except TypeError:
+            log.log_error_message('img_url=None caused TypeError')
             image_url = None
         return Article(title, author, source, published_time, description, article_url, image_url)
 

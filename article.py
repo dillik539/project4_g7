@@ -1,4 +1,5 @@
 
+
 class Article(object):
 
     def __init__(self, title, author, source, published_time, description, article_url, image_url):
@@ -22,3 +23,6 @@ class Article(object):
                ''.format(
             self.title, self.author, self.source, self.published_time, self.description, self.url, self.image
         )
+
+
+
