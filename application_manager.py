@@ -112,7 +112,7 @@ def test_geopandas():
 
     threshold_scale = np.linspace(article_values.values.min(), article_values.values.max(), 6, dtype=int).tolist()
 
-    test_map.choropleth(geo_str=geo_json_data.json(),
+    test_map.choropleth(geo_str=data,
                         # data_out='test_data_out.json',
                         data=world,
                         columns=['id','article_count'],
@@ -120,14 +120,14 @@ def test_geopandas():
                         fill_color='YlGn',
                         fill_opacity=0.7,
                         line_opacity=0.2,
-                        # threshold_scale=threshold_scale
+                        threshold_scale=threshold_scale
                         )
 
     folium.LayerControl().add_to(test_map)
 
-    print(geo_json_data.json())
+    # print(geo_json_data.json())
 
-    # test_map.save('gpd_test_map_.html')
+    test_map.save('gpd_test_map_.html')
     # test_map.render()
 
 def test_map_and_data():
