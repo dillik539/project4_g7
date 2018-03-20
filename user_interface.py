@@ -6,12 +6,17 @@ def top_menu():
         1) Search Headline Articles
         2) Search All Articles
         3) Search All Articles in Date-Range
-        3) Exit
+        q) Exit
     ''')
 
     menu_selection = input('Select an option to continue.\n')
 
-    return menu_selection
+    if menu_selection not in ['1', '2', '3', 'q']:
+        message('Invalid selection. Try again.')
+        top_menu()
+
+    else:
+        return menu_selection
 
 
 
