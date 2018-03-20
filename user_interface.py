@@ -1,6 +1,4 @@
-import log_controller
 
-log_object = log_controller
 
 def top_menu():
 
@@ -13,7 +11,12 @@ def top_menu():
 
     menu_selection = input('Select an option to continue.\n')
 
-    return menu_selection
+    if menu_selection not in ['1', '2', '3', 'q']:
+        message('Invalid selection. Try again.')
+        top_menu()
+
+    else:
+        return menu_selection
 
 
 
@@ -23,7 +26,6 @@ def get_user_query():
 
     if query_parameter is None:
         message('Query cannot be empty. Enter your query.')
-        log_object.log_info_message('Searched database with empty query string.')
 
     else:
         return query_parameter
@@ -31,5 +33,4 @@ def get_user_query():
 
 
 def message(msg):
-
     print(msg + '\n')

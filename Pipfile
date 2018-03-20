@@ -1,0 +1,24 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+requests = "*"
+folium = "*"
+flask = "*"
+newsapi = "*"
+flask-bootstrap = "*"
+pytrends = "*"
+newsapi-python = "*"
+pandas = "*"
+geojson = "*"
+pycountry = "*"
+setuptools = "*"
+
+
+[dev-packages]
+
