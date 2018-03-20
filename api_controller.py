@@ -2,10 +2,18 @@
 from newsapi import NewsApiClient
 # This is from file articles.py
 from article import Article
+import os
+
+
+# api key for the environment variables
+# daaba2aab3d54874a0a154c18715e82c
+apiNewsClient = os.environ.get('NEWS_CLIENT_API_KEY')
+
+
 
 # This is the api Key
 ## TODO: Make the actual key on another page and import it it
-newsapi = NewsApiClient(api_key = 'daaba2aab3d54874a0a154c18715e82c')
+newsapi = NewsApiClient(api_key = apiNewsClient)
 # top_headlines = newsapi.get_top_headlines(q = 'white house')
 # all_articles = newsapi.get_everything(q = 'us economy', from_parameter = '2017-01-01', to = '2017-12-31')
 
