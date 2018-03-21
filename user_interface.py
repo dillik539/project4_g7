@@ -33,4 +33,4 @@ def get_user_query():
 
 
 def message(msg):
-    print(msg + '\n')
+    print(str(msg) + '\n')
