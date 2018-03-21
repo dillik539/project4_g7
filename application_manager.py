@@ -80,20 +80,26 @@ def write_json_to_file(filename, json_data):
 def menu_controller(menu_selection):
 
     selection_dict = {
-        '1': execute_query('headlines'),
-        '2': execute_query('all'),
+        '1': execute_query,
+        '2': execute_query,
         '3': query_all_from_date_range,
         'q': quit_program,
     }
 
-    call_function = selection_dict.get(menu_selection)
+    call_function = selection_dict.get(menu_selection[0])
     # log.log_info_message(menu_selection)
+
+    ui.message('menu_selection: ' + str(menu_selection))
 
     if menu_selection is None:
         ui.message('Invalid Selection, Try Again')
         # log.log_warning_message('invalid selection in menu_controller()')
+    elif int(menu_selection) == 1:
+        call_function('headlines')
+    elif int(menu_selection) == 2:
+        call_function('all')
     else:
-        return call_function()
+        call_function()
 
 
 
