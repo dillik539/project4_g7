@@ -34,7 +34,7 @@ class ApiController:
             new_article_object = self.build_article_object(raw_article_data)
             articles_list.append(new_article_object)
 
-        log.log_info_message(str(articles_list))
+        # log.log_info_message(str(articles_list))
         return articles_list
 
 
@@ -50,7 +50,7 @@ class ApiController:
         try:
             image_url = raw_article_data['urlToImage']
         except TypeError:
-            log.log_error_message('img_url=None caused TypeError')
+            # log.log_error_message('img_url=None caused TypeError')
             image_url = None
         return Article(title, author, source, published_time, description, article_url, image_url)
 
