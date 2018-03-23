@@ -2,6 +2,7 @@
 # user_interface is the a file for graphics
  # log controller is a a file for logging
 import sys, user_interface, log_controller
+# uses the api controoler to be used with the requests
 from api_controller import ApiController
 
 # creating variables that are easier to type
@@ -63,17 +64,24 @@ def execute_query(query_type):
 
 
     try:
+        # to print the information that is coming from the api
         for article in data:
             ui.message(article.__str__())
 
     except KeyError:
+        # prints if nothing is returned in results
+        # doesn't work?
         ui.message('Query found no results.')
         log_object.log_error_message('Queried newsapi. No results were fetched.')
 
 
 
 def query_all_from_date_range():
-    ui.message('in query_all_from_date_range')
+    # TODO: while loop to ensure correct date input
+    ui.message('Choose a date (bewteen now and 2016), format YYYY-MM-DD')
+    # TODO: make a check for inside date range
+    # TODO: Setup date query
+    main()
 
 
 
