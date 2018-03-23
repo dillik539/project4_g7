@@ -22,7 +22,7 @@ class TestAppMan(unittest.TestCase):
 
     def test_get_all(self):
         # TODO: same thing as get headlines, don't think we have anything to test?
-        # TODO comment out when test is writen1
+        # TODO comment out when test is writen
         pass
 
     def test_execute_query(self):
@@ -32,7 +32,11 @@ class TestAppMan(unittest.TestCase):
 
         # TODO: test to ensure keyError
 
+        # TODO comment out when test is writen
+        pass
+
     def test_quit_program(self):
         #TODO: test to ensure statement Farewell digital world...is showen
 
-        
+        # TODO comment out when test is writen
+        pass
