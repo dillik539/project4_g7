@@ -1,15 +1,15 @@
 # This is a python include file
 from unittest import TestCase
+# This is the project 4 api_controller.py
 from api_controller import ApiController
 
 # main testing class to be used by python
-class TestAppMan(unittest.TestCase):
+class TestApiController(unittest.TestCase):
 
     def test_query_api(self):
         # TODO: test to ensure headlines and alls are calling the correct query types
 
         # TODO: ensure the return has information
-
 
         # TODO comment out when test is writen
         pass
@@ -32,4 +32,4 @@ class TestAppMan(unittest.TestCase):
         # TODO: test so that dates that are real are passing
 
         # TODO comment out when test is writen
-        pass 
+        pass
