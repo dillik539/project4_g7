@@ -3,6 +3,7 @@ from newsapi import NewsApiClient
 # This is from file articles.py
 from article import Article
 import os
+import articles_db
 
 
 # api key for the environment variables
@@ -61,6 +62,7 @@ class ApiController:
         author = raw_article_data['author']
         source = raw_article_data['source']['name']
         published_time= raw_article_data['publishedAt']
+        articles_db.add_to_db(title, author, source, published_time)
         return Article(title, author, source, published_time)
 
 
