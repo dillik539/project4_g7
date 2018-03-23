@@ -35,6 +35,7 @@ def menu_controller(menu_selection):
     if menu_selection not in selection_dict:
         ui.message('Invalid Selection, Try Again')
         log_object.log_info_message('Tried to enter invalid selection.')
+        main()
 
     # calling the method selected from menu if it valid
     else:
@@ -43,14 +44,14 @@ def menu_controller(menu_selection):
 
 def get_headlines():
     # printing a message for the user to know what was selected
-    ui.message("What do you want to search for in the headlines?")
+    ui.message("Search headlines for ?")
     # calling the query from api_controller.py
     execute_query('headlines')
     # after query returning to the menu
     main()
 
 def get_all():
-    ui.message("dont know what all does?")
+    ui.message("Search all articles for ?")
     # calling the query from api_controller.py
     execute_query('all')
     # returning to the main program after the query
