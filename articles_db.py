@@ -13,6 +13,8 @@ def add_to_db(title, author, source, published_time):
     except sqlite3.Error as error:
         print('An error occured.')
 '''create a table if not exists'''
+
+
 def create_cachedArticleTable():
     with sqlite3.connect(db_name) as db:
         cur = db.cursor()
