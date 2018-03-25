@@ -15,6 +15,8 @@ def add_to_db(Id, title, author, source, published_time):
         traceback.print_exc()
 
 '''create a table if not exists'''
+
+
 def create_cachedArticleTable():
     with sqlite3.connect(db_name) as db:
         cursor = db.cursor()
