@@ -1,7 +1,7 @@
 # sys is to exit the quit_program
 # user_interface is the a file for graphics
  # log controller is a a file for logging
-import sys, user_interface, log_controller
+import sys, user_interface, log_controller, articles_db
 # uses the api controoler to be used with the requests
 from api_controller import ApiController
 
@@ -24,6 +24,7 @@ def menu_controller(menu_selection):
         '1': get_headlines,
         '2': get_all,
         '3': query_all_from_date_range,
+        '4': display_cached_data,
         'q': quit_program,
         'Q': quit_program,
     }
@@ -90,6 +91,8 @@ def quit_program():
     sys.exit('Farewell digital world...\n')
     log_object.log_info_message('Closed the application.')
 
+def display_cached_data():
+    print(articles_db.get_cached_data())
 
 
 if __name__ == '__main__':

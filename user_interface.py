@@ -8,7 +8,8 @@ def top_menu():
         1) Search Headline Articles
         2) Search All Articles
         3) Search All Articles in Date-Range
-        3) Exit
+        4) Search cached Data
+        q) Exit
     ''')
 
     menu_selection = input('Select an option to continue.\n')
