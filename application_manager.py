@@ -151,13 +151,13 @@ def build_choropleth(query, query_type):
     world_df['article_count']=world_df['id'].map(articles_per_country)
     world_df.head()
     world_df.plot(column='article_count')
-    threshold_scale = np.linspace(articles_per_country.values.min(), articles_per_country.values.max(), 5, dtype=int).tolist()
+    threshold_scale = np.linspace(articles_per_country.values.min(), articles_per_country.values.max(), 6, dtype=int).tolist()
 
     choro_map.choropleth(geo_data=mgr.json_geo_data,
                         data=world_df,
                         columns=['id', 'article_count'],
                         key_on='feature.id',
-                        fill_color='Dark2',
+                        fill_color='PuBuGn',
                          # YlGrBu - RdYlGn - YlOrBr - RdYlBu - PuBuGn - YlOrRd
                          # Oranges - Greens -Purples - Reds - Greys - Blues
                          # Pastel1 - Pastel2 - Spectral - Set1 - Set2 - Set3 - Dark2
