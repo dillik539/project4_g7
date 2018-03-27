@@ -11,7 +11,10 @@ class TestAppMan(unittest.TestCase):
     def test_menu_controller(self):
         # TODO:test to check to see if dictionary selection are coming back correctly
         self.assertEqual("Search headlines for ?", menu_controller(1))
-
+        self.assertEqual("Search all articles for ?", menu_controller(2))
+        with assertRaises(KeyError):
+            application_manager.get_headlines("asdfoiu s dfd sd")
+            
         # TODO: input something to check the if not in dictionary
         self.assertEqual('Invalid Selection, Try Again', menu_controller("e"))
 
