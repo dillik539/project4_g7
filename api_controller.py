@@ -76,7 +76,7 @@ class ApiController:
                 source = cached_data[i][3]
                 published_time = cached_data[i][4]
         # return Article(title, author, source, published_time)
-        '''if query term not found in the list(cached_data_list), then execute the following'''
+        # '''if query term not found in the list(cached_data_list), then execute the following'''
         else:
             title = raw_article_data['title']
             author = raw_article_data['author']
