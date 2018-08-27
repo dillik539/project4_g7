@@ -3,8 +3,11 @@ from article import Article
 from source import Source
 import os
 import log_controller
+# import urllib.request
+import requests
 
-news_api_key = os.environ.get('NEWS_CLIENT_API_KEY')
+# news_api_key = os.environ.get('NEWS_CLIENT_API_KEY')
+news_api_key = os.environ.get('NEWS_API_KEY')
 newsapi = NewsApiClient(api_key = 'daaba2aab3d54874a0a154c18715e82c')
 log = log_controller
 
@@ -17,8 +20,22 @@ class ApiController:
         if not valid_date_range:
             if query_type is 'headlines':
                 return self.build_articles_list(newsapi.get_top_headlines(q = query_argument, page_size=100))
+            # elif query_type is 'all':
+            #     return self.build_articles_list(newsapi.get_everything(q = query_argument, page_size=100))
             elif query_type is 'all':
-                return self.build_articles_list(newsapi.get_everything(q = query_argument, page_size=100))
+                endpoint = 'https://newsapi.org/v2/everything?q=Putin&apiKey=daaba2aab3d54874a0a154c18715e82c&pageSize=100'
+                # endpoint = 'https://newsapi.org/v2/everything?q=' + query_argument + '&apiKey=' + news_api_key
+                article_count_raw = requests.get(endpoint)
+                article_count = article_count_raw.json()
+                print('Total Results: '  + str(article_count.json()['totalResults']))
+                # for(p = 1, article_count - (p * 100) > 100, p += 100 ))
+                if article_count <= 100:
+                    return self.build_articles_list(requests.get(endpoint).json()['articles'])
+                else if article_count > 100:
+                    articles = []
+                    for i in range(1, ((article_count - 100) / 100)):
+
+                return self.build_articles_list(newsapi.get_everything(q=query_argument, page_size=100))
 
         if valid_date_range and query_type is 'all':
             return self.build_articles_list(
