@@ -14,6 +14,8 @@ import user_interface
 from api_controller import ApiController
 from metadata_manager import MetadataManager
 
+import obama_response as test_pages
+
 #https://github.com/johan/world.geo.json geojson data
 
 ui = user_interface
@@ -30,8 +32,29 @@ def main():
     mgr.fix_cyprus_country_code()
     write_json_to_file(mgr.json_filename, mgr.json_geo_data)
     mgr.build_query_results_dict()
-    menu_controller(ui.top_menu())
+    #  menu_controller(ui.top_menu())
+    run_obama_test_data()
 
+def run_obama_test_data():
+    articles = []
+    for page in test_pages.get_results_list():
+        articles.append(api.build_articles_list(page))
+    print(articles)
+
+    for article_list in articles:
+        for article in article_list:
+            ui.message(article.__str__())
+            # log.log_info_message(article.__str__())
+            article_source_name = article.source
+            try:
+                source_country = get_source_country(article_source_name)
+                if source_country is not None:
+                    map_source(source_country)
+            except AttributeError:
+                log.log_error_message('Error from article: ' + article.__str__())
+                log.log_error_message('Article Source Type: ' + str(type(article.source)))
+
+    build_choropleth('Obama', 'all')
 
 def write_json_to_file(filename, json_data):
     with open(filename, 'w') as outfile:
@@ -98,6 +121,8 @@ def menu_controller(menu_selection):
         call_function('headlines')
     elif int(menu_selection) == 2:
         call_function('all')
+    elif ['q', 'Q'].index(menu_selection) != -1:
+        SystemExit(1)
     else:
         call_function()
 
@@ -151,8 +176,17 @@ def build_choropleth(query, query_type):
     world_df['article_count']=world_df['id'].map(articles_per_country)
     world_df.head()
     world_df.plot(column='article_count')
-    threshold_scale = np.linspace(articles_per_country.values.min(), articles_per_country.values.max(), 6, dtype=int).tolist()
-
+    if articles_per_country.values.max() <= 16:
+        threshold_scale = np.linspace(articles_per_country.values.min(), articles_per_country.values.max(), 6, dtype=int).tolist()
+    elif 160 >= articles_per_country.values.max() > 16:
+        threshold_scale = [articles_per_country.values.min(),
+                           articles_per_country.values.max()//16,
+                           articles_per_country.values.max()//8,
+                           articles_per_country.values.max()//4,
+                           articles_per_country.values.max()//2,
+                           articles_per_country.values.max()]
+    elif articles_per_country.values.max() > 160:
+        threshold_scale = [0, 1, 2, 5, 10, articles_per_country.values.max()]
     choro_map.choropleth(geo_data=mgr.json_geo_data,
                         data=world_df,
                         columns=['id', 'article_count'],
